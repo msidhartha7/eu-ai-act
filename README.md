@@ -1,63 +1,26 @@
-# EU AI Act Markdown Scraper
+# EU AI Act
 
-This repository contains a standalone Python scraper that exports EU AI Act site content into a markdown-backed database.
+A local compilation of the EU AI Act in Markdown, with a GitHub Pages reader for browsing the full text.
 
-## What it does
+Live site:
 
-- Crawls the `artificialintelligenceact.eu` sitemap.
-- Filters content by type such as `article`, `recital`, `annex`, `chapter`, `section`, `page`, or `post`.
-- Converts the main page body into markdown.
-- Writes one markdown file per page with YAML frontmatter.
-- Generates `manifest.json` and `errors.json` so failed pages are recorded instead of stopping the run.
+- https://msidhartha7.github.io/eu-ai-act/
 
-## Usage
+## What is in this repository
 
-Scrape the English article pages into `markdown_db/`:
+This repository contains a structured English compilation of the EU AI Act, organized as a markdown database and published as a static website.
 
-```bash
-python3 scripts/scrape_eu_ai_act.py
-```
+Included:
 
-Scrape articles, recitals, and annexes including translated pages:
+- `113` articles
+- `180` recitals
+- `13` annexes
+- `13` chapters
+- `16` sections
 
-```bash
-python3 scripts/scrape_eu_ai_act.py --include article recital annex --all-languages
-```
+All compiled content is stored under `markdown_db/`.
 
-Use the existing exported link list as an extra source of URLs:
-
-```bash
-python3 scripts/scrape_eu_ai_act.py \
-  --seed-json artificialintelligenceact.eu_.2026-04-16T15_23_52.390Z.json
-```
-
-Run a small test batch:
-
-```bash
-python3 scripts/scrape_eu_ai_act.py --limit 5 --verbose
-```
-
-## GitHub Pages Explorer
-
-This repository also includes a static GitHub Pages site that renders the corpus as a minimal Act explorer.
-
-Build it locally:
-
-```bash
-python3 scripts/build_github_pages.py
-```
-
-The generated static site is written to `site_dist/`.
-
-Deployment:
-
-- GitHub Actions builds the site on every push to `main`.
-- The workflow publishes `site_dist/` to GitHub Pages.
-- The site reads directly from the checked-in `markdown_db/` corpus.
-
-## Output layout
-
-Generated files are written under:
+## Repository structure
 
 ```text
 markdown_db/
@@ -65,22 +28,65 @@ markdown_db/
   errors.json
   en/
     article/
-      article-1.md
+    recital/
+    annex/
+    chapter/
+    section/
+
+site/
+  static/
+
+scripts/
+  build_github_pages.py
+  scrape_eu_ai_act.py
 ```
 
-The exact layout depends on page language and content type.
+## GitHub Pages reader
 
-## Error handling
+This repository ships with a static Act explorer that renders the compiled corpus as a minimal reading experience.
 
-The scraper includes:
+Features:
 
-- Retry and backoff for HTTP fetch failures.
-- Structured error recording for sitemap discovery and page scraping.
-- Filesystem write failure handling.
-- Empty-content detection, so bad parses are flagged instead of silently written.
+- Type-based navigation for articles, recitals, annexes, chapters, and sections
+- Clean reader pages with previous/next navigation
+- Static search index
+- Responsive white-and-blue layout
 
-## Notes
+Build locally:
 
-- The script uses only the Python standard library.
-- By default it scrapes English `article` pages only.
-- If the target site changes its HTML structure, the markdown extraction heuristics may need adjustment.
+```bash
+python3 scripts/build_github_pages.py
+```
+
+Generated output:
+
+- `site_dist/`
+
+Deployment:
+
+- GitHub Actions builds and deploys the site on pushes to `main`
+- The published Pages site serves the compiled markdown corpus directly from this repository
+
+## Data format
+
+Each page in `markdown_db/` is stored as Markdown with YAML frontmatter.
+
+Example fields:
+
+- `title`
+- `source_url`
+- `slug`
+- `content_type`
+- `language`
+- `scraped_at`
+- `word_count`
+
+The corpus inventory is recorded in:
+
+- `markdown_db/manifest.json`
+
+## Source and maintenance
+
+This repository is maintained as a compiled local database of the EU AI Act and a published reader for that corpus.
+
+The scraper remains in the repository as a maintenance utility for rebuilding or refreshing the dataset when needed, but the primary purpose of this repository is the compiled Act itself.
