@@ -1,0 +1,16 @@
+---
+title: "Recital 109"
+source_url: "https://artificialintelligenceact.eu/recital/109/"
+slug: "recital-109"
+content_type: "recital"
+language: "en"
+source: "sitemap"
+scraped_at: "2026-04-16T15:47:25+00:00"
+published_at: null
+updated_at: null
+description: null
+word_count: 157
+---
+# Recital 109
+
+Compliance with the obligations applicable to the providers of general-purpose AI models should be commensurate and proportionate to the type of model provider, excluding the need for compliance for persons who develop or use models for nonprofessional or scientific research purposes, who should nevertheless be encouraged to voluntarily comply with these requirements. Without prejudice to Union copyright law, compliance with those obligations should take due account of the size of the provider and allow simplified ways of compliance for SMEs, including start-ups, that should not represent an excessive cost and not discourage the use of such models. In the case of a modification or fine-tuning of a model, the obligations for providers of general-purpose AI models should be limited to that modification or fine-tuning, for example by complementing the already existing technical documentation with information on the modifications, including new training data sources, as a means to comply with the value chain obligations provided in this Regulation.

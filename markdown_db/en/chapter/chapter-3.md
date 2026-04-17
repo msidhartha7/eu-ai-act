@@ -1,0 +1,18 @@
+---
+title: "Chapter III: High-Risk AI System"
+source_url: "https://artificialintelligenceact.eu/chapter/3/"
+slug: "chapter-3"
+content_type: "chapter"
+language: "en"
+source: "sitemap"
+scraped_at: "2026-04-16T15:46:33+00:00"
+published_at: null
+updated_at: null
+description: null
+word_count: 2
+---
+# Chapter III: High-Risk AI System
+
+←
+
+Previous

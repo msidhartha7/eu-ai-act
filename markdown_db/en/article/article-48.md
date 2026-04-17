@@ -1,0 +1,24 @@
+---
+title: "Article 48: CE Marking"
+source_url: "https://artificialintelligenceact.eu/article/48/"
+slug: "article-48"
+content_type: "article"
+language: "en"
+source: "sitemap"
+scraped_at: "2026-04-16T15:43:34+00:00"
+published_at: null
+updated_at: null
+description: null
+word_count: 226
+---
+# Article 48: CE Marking
+
+1. The CE marking shall be subject to the general principles set out in Article 30 of Regulation (EC) No 765/2008.
+
+2. For high-risk AI systems provided digitally, a digital CE marking shall be used, only if it can easily be accessed via the interface from which that system is accessed or via an easily accessible machine-readable code or other electronic means.
+
+3. The CE marking shall be affixed visibly, legibly and indelibly for high-risk AI systems. Where that is not possible or not warranted on account of the nature of the high-risk AI system, it shall be affixed to the packaging or to the accompanying documentation, as appropriate.
+
+4. Where applicable, the CE marking shall be followed by the identification number of the notified body responsible for the conformity assessment procedures set out in[Article 43](https://artificialintelligenceact.eu/article/43). The identification number of the notified body shall be affixed by the body itself or, under its instructions, by the provider or by the provider’s authorised representative. The identification number shall also be indicated in any promotional material which mentions that the high-risk AI system fulfils the requirements for CE marking.
+
+5. Where high-risk AI systems are subject to other Union law which also provides for the affixing of the CE marking, the CE marking shall indicate that the high-risk AI system also fulfil the requirements of that other law.

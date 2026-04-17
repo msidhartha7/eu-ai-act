@@ -1,0 +1,16 @@
+---
+title: "Recital 31"
+source_url: "https://artificialintelligenceact.eu/recital/31/"
+slug: "recital-31"
+content_type: "recital"
+language: "en"
+source: "sitemap"
+scraped_at: "2026-04-16T18:25:01+00:00"
+published_at: null
+updated_at: null
+description: null
+word_count: 183
+---
+# Recital 31
+
+AI systems providing social scoring of natural persons by public or private actors may lead to discriminatory outcomes and the exclusion of certain groups. They may violate the right to dignity and non-discrimination and the values of equality and justice. Such AI systems evaluate or classify natural persons or groups thereof on the basis of multiple data points related to their social behaviour in multiple contexts or known, inferred or predicted personal or personality characteristics over certain periods of time. The social score obtained from such AI systems may lead to the detrimental or unfavourable treatment of natural persons or whole groups thereof in social contexts, which are unrelated to the context in which the data was originally generated or collected or to a detrimental treatment that is disproportionate or unjustified to the gravity of their social behaviour. AI systems entailing such unacceptable scoring practices and leading to such detrimental or unfavourable outcomes should therefore be prohibited. That prohibition should not affect lawful evaluation practices of natural persons that are carried out for a specific purpose in accordance with Union and national law.

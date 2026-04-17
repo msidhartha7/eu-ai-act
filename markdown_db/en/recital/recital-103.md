@@ -1,0 +1,16 @@
+---
+title: "Recital 103"
+source_url: "https://artificialintelligenceact.eu/recital/103/"
+slug: "recital-103"
+content_type: "recital"
+language: "en"
+source: "sitemap"
+scraped_at: "2026-04-16T15:47:08+00:00"
+published_at: null
+updated_at: null
+description: null
+word_count: 136
+---
+# Recital 103
+
+Free and open-source AI components covers the software and data, including models and general-purpose AI models, tools, services or processes of an AI system. Free and open-source AI components can be provided through different channels, including their development on open repositories. For the purposes of this Regulation, AI components that are provided against a price or otherwise monetised, including through the provision of technical support or other services, including through a software platform, related to the AI component, or the use of personal data for reasons other than exclusively for improving the security, compatibility or interoperability of the software, with the exception of transactions between microenterprises, should not benefit from the exceptions provided to free and open-source AI components. The fact of making AI components available through open repositories should not, in itself, constitute a monetisation.
