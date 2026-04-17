@@ -12,6 +12,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
+from urllib import parse
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -308,6 +309,55 @@ def asset_href(current_route: str, asset_name: str) -> str:
     return os.path.relpath((Path("assets") / asset_name).as_posix(), start=Path(current_route).as_posix())
 
 
+def internal_route_from_href(href: str) -> str | None:
+    parsed = parse.urlparse(href)
+    if parsed.scheme and parsed.netloc not in {"artificialintelligenceact.eu", "www.artificialintelligenceact.eu"}:
+        return None
+
+    segments = [segment for segment in parsed.path.strip("/").split("/") if segment]
+    if len(segments) > 1 and re.fullmatch(r"[a-z]{2}", segments[0]):
+        segments = segments[1:]
+
+    if len(segments) < 2:
+        return None
+
+    content_type = segments[0]
+    if content_type not in TYPE_SLUGS:
+        return None
+
+    slug = segments[1]
+    if not slug.startswith(f"{content_type}-"):
+        slug = f"{content_type}-{slug}"
+
+    route = page_route(content_type, slug)
+    if parsed.fragment:
+        return f"{route}#{parsed.fragment}"
+    return route
+
+
+def normalize_internal_href(current_route: str, href: str) -> str:
+    route = internal_route_from_href(href)
+    if not route:
+        return href
+
+    target_route, _, fragment = route.partition("#")
+    normalized = relative_href(current_route, target_route)
+    if fragment:
+        return f"{normalized}#{fragment}"
+    return normalized
+
+
+def rewrite_internal_links(body_html: str, current_route: str) -> str:
+    def replace_href(match: re.Match[str]) -> str:
+        original_href = html.unescape(match.group(1))
+        normalized_href = normalize_internal_href(current_route, original_href)
+        if normalized_href == original_href:
+            return match.group(0)
+        return f'href="{escape(normalized_href)}"'
+
+    return re.sub(r'href="([^"]+)"', replace_href, body_html)
+
+
 def load_pages() -> tuple[list[Page], dict[str, object]]:
     manifest = json.loads((MARKDOWN_DB / "manifest.json").read_text(encoding="utf-8"))
     pages: list[Page] = []
@@ -318,6 +368,7 @@ def load_pages() -> tuple[list[Page], dict[str, object]]:
         body = strip_duplicate_title_heading(body, str(frontmatter["title"]))
         route = page_route(str(frontmatter["content_type"]), str(frontmatter["slug"]))
         body_html = render_markdown(body)
+        body_html = rewrite_internal_links(body_html, route)
         excerpt = normalize_whitespace(strip_tags(body_html))[:220].strip()
         if excerpt and len(excerpt) == 220:
             excerpt = excerpt.rstrip(".;, ") + "…"
