@@ -37,6 +37,24 @@ Run a small test batch:
 python3 scripts/scrape_eu_ai_act.py --limit 5 --verbose
 ```
 
+## GitHub Pages Explorer
+
+This repository also includes a static GitHub Pages site that renders the corpus as a minimal Act explorer.
+
+Build it locally:
+
+```bash
+python3 scripts/build_github_pages.py
+```
+
+The generated static site is written to `site_dist/`.
+
+Deployment:
+
+- GitHub Actions builds the site on every push to `main`.
+- The workflow publishes `site_dist/` to GitHub Pages.
+- The site reads directly from the checked-in `markdown_db/` corpus.
+
 ## Output layout
 
 Generated files are written under:
