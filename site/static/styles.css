@@ -12,6 +12,14 @@
   --shadow: 0 18px 48px rgba(14, 41, 89, 0.08);
   --radius: 22px;
   --reader-width: 860px;
+  --sidebar-width: 312px;
+  --page-gutter: clamp(16px, 2vw, 28px);
+  --content-max: 1160px;
+  --section-gap: clamp(18px, 2vw, 28px);
+  --card-padding: clamp(22px, 2.4vw, 34px);
+  --card-padding-tight: clamp(18px, 1.8vw, 24px);
+  --header-padding-block: clamp(14px, 1.8vw, 20px);
+  --header-padding-inline: clamp(16px, 2.2vw, 28px);
 }
 
 * {
@@ -44,7 +52,7 @@ a:hover {
 .site-shell {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: minmax(280px, var(--sidebar-width)) minmax(0, 1fr);
 }
 
 .site-sidebar {
@@ -52,7 +60,7 @@ a:hover {
   top: 0;
   height: 100vh;
   overflow: auto;
-  padding: 28px 24px;
+  padding: clamp(20px, 2vw, 28px) clamp(16px, 1.8vw, 24px);
   border-right: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(18px);
@@ -112,13 +120,13 @@ a:hover {
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 
 .nav-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .nav-group-header a {
@@ -143,7 +151,7 @@ a:hover {
   grid-template-columns: 46px 1fr;
   align-items: start;
   gap: 10px;
-  padding: 10px 12px;
+  padding: 9px 12px;
   border-radius: 14px;
   color: var(--text-soft);
 }
@@ -178,7 +186,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 20px 28px;
+  padding: var(--header-padding-block) var(--header-padding-inline);
   border-bottom: 1px solid rgba(207, 224, 251, 0.72);
   background: rgba(248, 251, 255, 0.84);
   backdrop-filter: blur(18px);
@@ -194,7 +202,8 @@ a:hover {
 .search-shell {
   margin-left: auto;
   position: relative;
-  width: min(420px, 100%);
+  width: min(420px, 42vw);
+  min-width: min(260px, 100%);
 }
 
 .search-input {
@@ -263,15 +272,15 @@ a:hover {
 }
 
 .content-layout {
-  width: min(1180px, calc(100vw - 80px));
+  width: min(var(--content-max), 100%);
   margin: 0 auto;
-  padding: 34px 0 68px;
+  padding: clamp(24px, 3vw, 34px) var(--page-gutter) clamp(44px, 6vw, 72px);
 }
 
 .home-layout,
 .listing-layout {
   display: grid;
-  gap: 24px;
+  gap: var(--section-gap);
 }
 
 .hero-card,
@@ -287,7 +296,7 @@ a:hover {
 }
 
 .hero-card {
-  padding: 34px;
+  padding: var(--card-padding);
 }
 
 .hero-card h1,
@@ -358,7 +367,7 @@ a:hover {
 .stats-row,
 .cards-grid {
   display: grid;
-  gap: 18px;
+  gap: clamp(14px, 1.8vw, 18px);
 }
 
 .stats-row {
@@ -366,7 +375,7 @@ a:hover {
 }
 
 .stat-card {
-  padding: 24px 20px;
+  padding: var(--card-padding-tight);
   color: var(--text);
 }
 
@@ -393,7 +402,7 @@ a:hover {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-  padding: 18px 24px;
+  padding: clamp(16px, 2vw, 22px) clamp(18px, 2vw, 24px);
 }
 
 .cards-grid {
@@ -406,7 +415,7 @@ a:hover {
 
 .homepage-panel,
 .page-card {
-  padding: 24px;
+  padding: var(--card-padding-tight);
   color: var(--text);
 }
 
@@ -453,14 +462,15 @@ a:hover {
 }
 
 .reader-card {
-  width: min(var(--reader-width), 100%);
-  padding: 28px 32px 34px;
+  width: 100%;
+  max-width: var(--reader-width);
+  padding: clamp(22px, 2.6vw, 32px) clamp(20px, 2.8vw, 34px) clamp(28px, 3vw, 36px);
 }
 
 .reader-header {
   display: grid;
   gap: 12px;
-  padding-bottom: 24px;
+  padding-bottom: clamp(18px, 2vw, 24px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -474,8 +484,12 @@ a:hover {
 }
 
 .reader-body {
-  padding-top: 26px;
+  padding-top: clamp(20px, 2.2vw, 28px);
   color: #173053;
+}
+
+.reader-body > :first-child {
+  margin-top: 0;
 }
 
 .reader-body h1,
@@ -549,7 +563,8 @@ a:hover {
 }
 
 .pager {
-  width: min(var(--reader-width), 100%);
+  width: 100%;
+  max-width: var(--reader-width);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
@@ -572,6 +587,16 @@ a:hover {
   background: rgba(255, 255, 255, 0.9);
   box-shadow: var(--shadow);
   color: var(--text);
+}
+
+.hero-card,
+.reader-card,
+.homepage-panel,
+.stat-card,
+.page-card,
+.info-strip,
+.pager-link {
+  min-width: 0;
 }
 
 .pager-link:hover {
@@ -598,6 +623,8 @@ a:hover {
     top: 0;
     z-index: 40;
     width: min(88vw, 360px);
+    max-width: 360px;
+    height: 100dvh;
     transform: translateX(-105%);
     transition: transform 180ms ease;
   }
@@ -622,22 +649,24 @@ a:hover {
     display: inline-flex;
   }
 
-  .content-layout {
-    width: min(100vw - 32px, 1180px);
-  }
-
   .site-header {
-    padding: 16px;
+    padding: 14px 16px;
   }
 
   .search-shell {
     width: min(100%, 420px);
+    min-width: 0;
+  }
+
+  .content-layout {
+    padding-top: 22px;
   }
 }
 
 @media (max-width: 760px) {
   .site-header {
     flex-wrap: wrap;
+    gap: 12px;
   }
 
   .search-shell {
@@ -649,11 +678,18 @@ a:hover {
   .hero-card,
   .reader-card,
   .homepage-panel,
-  .page-card {
-    padding: 22px;
+  .page-card,
+  .stat-card {
+    padding: 20px;
   }
 
   .info-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-row,
+  .cards-grid,
+  .cards-grid-home {
     grid-template-columns: 1fr;
   }
 
@@ -663,5 +699,48 @@ a:hover {
 
   .reader-header h1 {
     font-size: 2.2rem;
+  }
+
+  .reader-body p,
+  .reader-body li,
+  .reader-body blockquote {
+    font-size: 1rem;
+  }
+
+  .reader-body table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .nav-list li a {
+    grid-template-columns: 40px 1fr;
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-layout {
+    padding-inline: 12px;
+    padding-bottom: 36px;
+  }
+
+  .site-header {
+    padding-inline: 12px;
+  }
+
+  .hero-card h1,
+  .reader-header h1 {
+    letter-spacing: -0.03em;
+  }
+
+  .hero-actions,
+  .panel-actions {
+    gap: 10px;
+  }
+
+  .button,
+  .panel-link {
+    width: 100%;
   }
 }
